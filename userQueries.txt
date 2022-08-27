@@ -1,0 +1,30 @@
+Find all the female users
+>db.users.find({gender:{$eq:'Female'}})
+
+Find all the female users who speak one of the two languages Kannada, Hindi
+>db.users.find({gender:{$eq:'Female'},language:{$in:['Kannada','German']}})
+
+Find all the male users who can speak Hindi and female users who can speak Kannada
+> db.users.find({$or:[{$and:[{gender:{$eq:'Male'}},{language:{$eq:'Hindi'}}]},{$and:[{gender:{$eq:'Female'}},{language:{$eq:'Kannada'}}]}]})
+
+Find all the users who wear the shirt size S
+>db.users.find({shirt_size:{$eq:"S"}})
+
+Find all the female users who wear the shirt size XL
+> db.users.find({gender:{$eq:'Female'},shirt_size:{$eq:"XL"}})
+
+Find all the English speaking male users and Hindi speaking female users
+> db.users.find({$or:[{$and:[{gender:{$eq:'Male'}},{language:{$eq:'English'}}]},{$and:[{gender:{$eq:'Female'}},{language:{$eq:'Hindi'}}]}]})
+
+Find all the male users who can speak Hindi or English and female users who can speak Kannada or German
+>db.users.find({$or:[{$and:[{gender:{$eq:'Male'}},{language:{$in:['English','Hindi']}}]},{$and:[{gender:{$eq:'Female'}},{language:{$in:['Kannada','German']}}]}]})
+
+Find all the female users who can speak Bengali who wear shirt size XL and male users who speak German and wear shirt size either L or M
+>db.users.find({$or:[{$and:[{gender:{$eq:'Male'}},{language:{$eq:'German'}},{shirt_size:{$in:['L','M']}}]},{$and:[{gender:{$eq:'Female'}},{language:{$eq:'Bengali'}},{shirt_size:{$eq:'XL'}}]}]})
+
+Find all the female users who speak any of the Indian languages (Hindi, Punjabi, Bengali, Gujarati, Tamil, Malayalam)
+> db.users.find({$and:[{gender:{$eq:'Female'}},{language:{$in:['Hindi','Punjabi','Bengali','Gujrati','Tamil','Malayalam']}}]})
+
+Men who can speak Korean
+>db.users.find({gender:{$eq:"Male"},language:{$eq:"Korean"}})
+

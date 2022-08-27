@@ -1,0 +1,29 @@
+Men who own a Pink car
+>db.cars.find({gender:{$eq:"Male"},car_color:{$eq:"Pink"}})
+
+Women who own a Red or a Blue Car
+>db.cars.find({gender:{$eq:"Female"},car_color:{$in:["Red","Blue"]}})
+
+Men who purchased the car in the year 1998
+>db.cars.find({gender:{$eq:"Male"},purchase_year:{$eq:'1998'}})
+
+Women who purchased a Yellow car in the year 1985
+>db.cars.find({gender:{$eq:"Female"},purchase_year:{$eq:'1985'},car_color:{$eq:"Yellow"}})
+
+Men who either have a Red or Green car and either live in Germany or Kenya
+> db.cars.find({gender:{$eq:"Male"},$or:[{country:{$in:['Germany','Kenya']}},{car_color:{$in:['Red','Green']}}]})
+
+People from India who purchased cars in the year 2001
+>db.cars.find({country:{$eq:"India"},purchase_year:{$eq:'2001'}})
+
+People from Germany or Egypt who purchased cars in the year 1998 or 1992
+>db.cars.find({country:{$in:['Germany','Egypt']},purchase_year:{$in:["1998","1992"]}})
+
+Women from India who own a Blue car
+>db.cars.find({gender:{$eq:'Female'},country:{$eq:"India"},car_color:{$eq:'Blue'}})
+
+Men from Germany who purchased cars in 1998 and Men from Egypt who purchased cars in 1992
+>db.cars.find({$or:[{gender:{$eq:'Male'},country:{$eq:"Germany"},purchase_year:{$eq:'1998'}},{gender:{$eq:'Male'},country:{$eq:"Egypt"},purchase_year:{$eq:'1992'}}]})
+
+Women who own a Green car and are not from Pakistan
+>db.cars.find({gender:{$eq:'Female'},country:{$not:{$eq:"Pakistan"}}})
